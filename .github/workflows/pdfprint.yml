@@ -15,4 +15,19 @@ jobs:
         uses: Jatus93/Latex-multicompiler@97081e71ec28ea353c04532b73baa1217d1e38f6
         with:
           path_to_list: notes/
-      
+      - name: Commit files
+        id: commit
+        run: |
+          git add --all
+          if [-z "$(git status --porcelain)"]; then
+             echo "::set-output name=push::false"
+          else
+             git commit -m "Add changes" -a
+             echo "::set-output name=push::true"
+          fi
+        shell: bash
+      - name: Push changes
+        if: steps.commit.outputs.push == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+           github_token: ${{ secrets.GITHUB_TOKEN }}
