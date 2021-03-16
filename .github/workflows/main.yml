@@ -10,7 +10,7 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: _.tex
+          root_file: second.tex
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
