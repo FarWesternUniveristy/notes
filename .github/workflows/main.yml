@@ -1,8 +1,6 @@
 name: Release Compiled PDF 
 on:
   push:
-    tags:
-      - '*.*.*'
 jobs:
   build_latex:
     runs-on: ubuntu-latest
@@ -12,7 +10,7 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: main.tex
+          root_file: second.tex
 
       - name: Create Release
         id: create_release
