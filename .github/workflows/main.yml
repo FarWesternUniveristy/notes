@@ -9,12 +9,5 @@ jobs:
   latex:
     runs-on: ubuntu-latest
     steps:
-    - name: Set up Git repository
-      uses: actions/checkout@v4
-    - name: Compile and Deploy LaTeX to PDF
-      uses: ottojo/uberblatt-action@master
-    - name: GitHub Pages Deploy
-      uses: maxheld83/ghpages@v0.2.1
-      env:
-        BUILD_DIR: "build/"
-        GH_PAT: ${{ secrets.GH_PAT }}
+    - name: paper-maker
+      uses: andycasey/paper-maker@0.10
