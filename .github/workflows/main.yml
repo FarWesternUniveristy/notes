@@ -9,5 +9,5 @@ jobs:
   latex:
     runs-on: ubuntu-latest
     steps:
-    - name: LaTeX-to-PDF github action
-      uses: forkbabu/AutoEdit@2957aee6d07356b3ce2db56cb4829eee15bceb1b
+    - name: Uberblatt
+      uses: ottojo/uberblatt-action@5c0a0ee8cf7f367a8739ebce170b5b7387f28f34
