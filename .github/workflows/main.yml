@@ -9,5 +9,5 @@ jobs:
   latex:
     runs-on: ubuntu-latest
     steps:
-    - name: paper-maker
-      uses: andycasey/paper-maker@0.10
+    - name: LaTeX-to-PDF github action
+      uses: forkbabu/AutoEdit@2957aee6d07356b3ce2db56cb4829eee15bceb1b
