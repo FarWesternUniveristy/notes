@@ -21,8 +21,14 @@ jobs:
       - name: Autotag
         uses: DanySK/semver-autotag-action@master
       - name: Deploy
-        id: create_release
-        uses: zendesk/action-create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
+        run: |
+          TAG=$(git describe --tags)
+          hub release create -m "$(git tag -l --format='%(contents)' "$TAG")" "$TAG" || true
+          while IFS= read -r file; do
+            pdf="${file%.*}.pdf"
+            echo "Delivering file $pdf"
+            hub release edit -m '' -a "$pdf" "$TAG"
+          done <"success-list"
+
