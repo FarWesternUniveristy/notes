@@ -20,38 +20,6 @@ jobs:
         uses: DanySK/compile-latex-action@master
       - name: Autotag
         uses: DanySK/semver-autotag-action@master
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
-      name: Build LaTeX and deploy on GH Releases
-on:
-  push:
-
-jobs:
-  Build-LaTeX:
-    runs-on: ubuntu-latest
-    steps:
-      # Checkout the repository
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Fetch tags
-        shell: bash
-        run: git fetch --tags -f
-      - name: Install TeXLive
-        uses: DanySK/setup-texlive-action@master
-      - name: Compile LaTeX
-        uses: DanySK/compile-latex-action@master
-      - name: Autotag
-        uses: DanySK/semver-autotag-action@master
       - name: Deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -63,4 +31,3 @@ jobs:
             echo "Delivering file $pdf"
             hub release edit -m '' -a "$pdf" "$TAG"
           done <"success-list"
-
