@@ -1,2 +1,0 @@
-- name: LaTeX-to-PDF github action
-  uses: forkbabu/AutoEdit@v2.0
